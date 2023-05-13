@@ -11,6 +11,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
 
       let loginValue = null
+      let petName = null
       on('task', {
         generateRandomEmail() {
           loginValue = faker.internet.email()
@@ -18,6 +19,12 @@ module.exports = defineConfig({
         },
         setRandomEmail(){
           return loginValue
+        },
+
+        generateRandomPetName()
+        {
+          petName = faker.name.findName()
+          return petName
         }
       })
 

@@ -23,13 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
+import 'cypress-file-upload';
 
 Cypress.Commands.add("getById", (selector) => {
     return cy.get(`[id=${selector}]`)
   })
 
   Cypress.Commands.add("getByClass", (selector) => {
-    return cy.get(`[class=${selector}]`)
+    return cy.get(`[class="${selector}"]`)
   })
 
