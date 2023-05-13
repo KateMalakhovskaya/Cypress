@@ -1,0 +1,27 @@
+describe('Add Pet', 
+
+() =>{
+
+    beforeEach(()=>{
+        cy.visit("http://34.141.58.52:8080/#/")
+        cy.contains("Login").click()
+        cy.get('[class="p-inputtext p-component w-full"]').type("kate+220513@yopmail.com")
+        cy.get('[class="p-inputtext p-component"]').type("qwerty123")
+        cy.get('[class="p-menubar p-component"]').click()
+        cy.contains("Submit").click()
+        cy.url().should('include', 'profile')
+    })
+
+    context("Registration scren", () =>{
+
+
+    it('Open Registration page', () =>{
+        cy.getByClass("p-fieldset-legend-text").should('contain', "Registration")
+        if (cy.contains("Registration")){
+            cy.log("Element 'Registration' found successfully!");
+        } else {
+            cy.log("Element 'Registration' NOT found!");
+        }
+    })
+})
+})

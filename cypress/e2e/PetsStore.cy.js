@@ -1,4 +1,7 @@
-describe('Home page', () =>{
+describe('Home page', 
+
+() =>{
+
     beforeEach(()=>{
         cy.visit("http://34.141.58.52:8080/#/")
         cy.get('a[href*="register"]').click()
@@ -16,9 +19,10 @@ describe('Home page', () =>{
         }
     })
 
-    it.only('Registration with valid email', () =>{
+    it('Registration with valid email', () =>{
         cy.task('generateRandomEmail').then((email) => {
         const menuBarSelector = '[class="p-menubar p-component"]';
+        Cypress.env('email', email);
         cy.getById("login").type(email)
         cy.getById("password").type("qwerty123")
         cy.get(menuBarSelector).click()
@@ -27,8 +31,10 @@ describe('Home page', () =>{
         cy.contains('Submit').click()
         cy.contains("Quit").should("exist")
         cy.url().should('include', 'profile')
+        cy.contains("Quit").click()
         })
     })
+
 
     it('Registration with NOT valid email', () =>{
         const menuBarSelector = '[class="p-menubar p-component"]';

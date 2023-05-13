@@ -3,13 +3,24 @@ const faker = require("faker");
 
 module.exports = defineConfig({
   e2e: {
+      viewportWidth: 1280,
+      viewportHeight: 720,
+      //run only selected specs
+      //specPattern: 'cypress/e2e/allSpecs.cy.js',
+
     setupNodeEvents(on, config) {
+
+      let loginValue = null
       on('task', {
         generateRandomEmail() {
-          const randomEmail = faker.internet.email();
-          return randomEmail;
+          loginValue = faker.internet.email()
+          return loginValue
         },
+        setRandomEmail(){
+          return loginValue
+        }
       })
+
     },
   },
   
